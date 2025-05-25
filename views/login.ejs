@@ -14,6 +14,12 @@
 <body>
 	<%-include('./partials/navbar.ejs')%>
 	<section class="prompt">
+		<% if(username){%>
+      <p>You are currently logged in as the <b><%=username%></b></p>
+      <form action="/logout" method="post">
+        <button class="logout btn btn-danger" type="submit">Sign out</button>
+      </form>
+  	<%}%> <hr>
 		<h3>Hotel Booking</h3>
 		<h2>Login</h2>
 		<form action="/login/password" method="post">

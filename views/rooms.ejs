@@ -13,7 +13,8 @@
 
 <body>
 
-  <%-include('./partials/navbar.ejs')%>
+  <%- include('./partials/navbar.ejs')%>
+  <%- include('./partials/loggedInAs.ejs', {username: username}) %>
     <div class="container">
       <h2 class="p-3 text-center">Choose a room</h2>
       <hr>
@@ -22,15 +23,16 @@
           <div class="row px-3 py-1 w-100">
             <span class="col py-1 bg-info me-1 rounded-1">Room for <%=room.Capacity%> people<span class="right">Daily
                   cost: <%=room.PricePerDay%></span></span>
-            <button onclick="makeReservation(1,'<%=room.id%>','/rooms/reservation' )" class="col btn btn-success"> Rent
-              a room</button>
+            <button onclick="makeReservation('<%=userId%>','<%=room.id%>','http\:\/\/localhost:3000\/rooms\/reservation' )" class="col btn btn-secondary"> Rent a room</button>
           </div>
           <% }); %>
       </div>
+      <hr>
+      <button onclick="addRoom('/rooms' )" class="btn btn-success"> Add a new room</button>
     </div>
-    <hr>
     <%-include('./partials/footer.ejs')%>
-      <script src="../javascripts/makeReservation.js"></script>
+    <script src="../javascripts/makeReservation.js"></script>
+    <script src="../javascripts/addRoom.js"></script>
 
 </body>
 

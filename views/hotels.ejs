@@ -14,25 +14,31 @@
 <body>
 
   <%-include('./partials/navbar.ejs')%>
-    <div class="container">
-      <h2 class="p-3 text-center">Choose a hotel</h2>
-      <hr>
-      <div class="list-group">
-        <% hotels.forEach(function(hotel) { %>
-          <div class="row px-3 py-1 w-100">
-            <span class="col py-1 bg-info me-1 rounded-1">
-              <%=hotel.Name%><span class="right">
-                  <%=hotel.Location%>
-                </span>
-            </span>
+  <%- include('./partials/loggedInAs.ejs', {username: username}) %>
+  <div class="container">
+    <h2 class="p-3 text-center">Choose a hotel</h2>
+    <hr>
+    <div class="list-group">
+      <% hotels.forEach(function(hotel) { %>
+        <div class="row px-3 py-1 w-100">
+          <span class="col py-1 bg-info me-1 rounded-1">
+            <%=hotel.Name%><span class="right">
+                <%=hotel.Location%>
+              </span>
+          </span>
+          <% if (user != null) { %>
             <a href="/rooms/<%=hotel.id%>" class="col btn btn-success me-1"> Rent a room</a>
-            <a href="/hotels/<%=hotel.id%>" class="col btn btn-warning me-1"> Details</a>
-          </div>
-          <% }); %>
-      </div>
+          <% } %>
+          <a href="/hotels/<%=hotel.id%>" class="col btn btn-warning me-1"> Details</a>
+        </div>
+        <% }); %>
     </div>
     <hr>
-    <%-include('./partials/footer.ejs')%>
+    <button onclick="addHotel('/hotels' )" class="btn btn-success"> Add a new hotel</button>
+  </div>
+  <%-include('./partials/footer.ejs')%>
+  
+  <script src="../javascripts/addHotel.js"></script>
 
 </body>
 
